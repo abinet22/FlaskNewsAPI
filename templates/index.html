@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+</head>
+<body>
+    <h1>News App</h1>
+    <form method="GET" action="/">
+        <input type="text" name="query" placeholder="Search for news..." value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+    <h2>Top Headlines</h2>
+    {% if articles %}
+        <ul>
+        {% for article in articles %}
+            <li>
+                <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
+                <p>{{ article.description }}</p>
+                <small>Source: {{ article.source.name }} | Published: {{ article.publishedAt }}</small>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles found.</p>
+    {% endif %}
+</body>
+</html>
